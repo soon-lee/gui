@@ -1,134 +1,170 @@
-import {PlotProps} from "../models/plot.ts";
-import {Application, Graphics,Text} from "pixi.js";
+import {PlotConfig, PlotProps} from "../models/plot.ts";
+import {Application, extensions, Graphics, ResizePlugin, Text} from "pixi.js";
 import {annulus, dimensions, discrete} from "../models/layout.ts";
-import {createEffect, createSignal, onMount} from "solid-js";
+import {createEffect, createSignal} from "solid-js";
 
-export const AnnulusPlot = ({data,config}:PlotProps) => {
-    console.log(config)
+export const AnnulusPlot = (props: PlotProps) => {
     let container: HTMLDivElement | undefined;
-    const application =new Application({
-        antialias: true,
-        width: config.width,
-        height: config.height,
-        backgroundColor: 'lightgray',
+    const application = new Application({
+        antialias: true, width: props.config.width, height: props.config.height, backgroundColor: 'lightgray'
     })
-    createEffect(()=>{
-        // if(container){
-        //     application.renderer.resize(container.clientWidth,container.clientHeight)
-        // }
-console.log(config)
-        application.renderer.resize(config.width,config.height)
+    const [circle, setCircle] = createSignal([0, 0, 0])
+    const [bound, setBound] = createSignal([0, 0, 0, 0])
+    createEffect(() => {
+        application.renderer.clear()
+        application.renderer.resize(props.config.width, props.config.height)
+        application.render()
+        const [top, right, bottom, left] = [props.config.margin[0], props.config.width - props.config.margin[1], props.config.height - props.config.margin[2], props.config.margin[3]]
+        const [width, height] = [right - left, bottom - top]
+        setBound([top, right, bottom, left])
+        setCircle([(left + right) / 2, (top + bottom) / 2, Math.min(width, height) / 2 - 10])
+        // const renderTexture = application.renderer.generateTexture(application.stage);
+        // application.stage.removeChildren();
+        // application.stage.addChild(renderTexture);
     })
 
     const area = new Graphics();
     const tooltip = new Graphics();
     tooltip.visible = false;
     tooltip.beginFill('white')
-    tooltip.drawRoundedRect(10,10,120,40,3)
+    tooltip.drawRoundedRect(0, 0, 120, 45, 3)
     tooltip.endFill()
     const tooltipDimension = new Text()
     tooltipDimension.style.fontSize = 15
     tooltipDimension.style.fontWeight = 'bold'
     tooltipDimension.anchor.y = 0.5
-    tooltipDimension.x = 20
-    tooltipDimension.y = 20
+    tooltipDimension.x = 10
+    tooltipDimension.y = 15
     const tooltipMeasure = new Text()
     tooltipMeasure.style.fontSize = 13
     tooltipMeasure.style.fontWeight = 'bold'
     tooltipMeasure.anchor.y = 0.5
-    tooltipMeasure.x = 20
-    tooltipMeasure.y = 35
+    tooltipMeasure.x = 10
+    tooltipMeasure.y = 30
     const tooltipRate = new Text()
     tooltipRate.style.fontSize = 12
     tooltipRate.anchor.y = 0.5
-    tooltipRate.x = 70
-    tooltipRate.y = 35
+    tooltipRate.x = 60
+    tooltipRate.y = 30
     tooltip.addChild(tooltipDimension)
     tooltip.addChild(tooltipMeasure)
     tooltip.addChild(tooltipRate)
 
     const attach = new Graphics()
 
-    // const marking = new Graphics()
+    const dimensionList = dimensions(props.data);
 
-    const dimensionList = dimensions(data);
 
-    const legendLayout = discrete(dimensionList,[config.left,config.width-config.right])
+    createEffect(() => {
 
-    createEffect(
-        () => {
+        if (!container) return
 
-            if (!container) return
-            // container.setAttribute('width', `${config.width}px`)
-            // container.setAttribute('height', `${config.height}px`)
+        annulus(props.data).map(item => {
+            const angle = (item.endAngle + item.beginAngle) / 2
+            const g = new Graphics();
+            g.eventMode = "dynamic"
+            g.beginFill(props.config.colors[item.dimension])
+            g.arc(circle()[0], circle()[1], circle()[2], item.beginAngle, item.endAngle, false)
+            g.arc(circle()[0], circle()[1], circle()[2] * 0.6, item.endAngle, item.beginAngle, true)
+            g.closePath()
+            if (circle()[2] * 0.6*Math.sin(angle/2)*2 > 12) {
+                const label = new Text(item.dimension)
+                label.anchor.set(0.5, 0.5)
+                label.x = circle()[0] + circle()[2]*0.7 * Math.cos(angle)
+                label.y = circle()[1] + circle()[2]*0.7 * Math.sin(angle)
+                label.style.fontSize = 10
+                g.addChild(label)
+            }
+            g.onmouseover = (event) => {
+                tooltip.visible = true
+                tooltip.x = event.global.x + 10;
+                tooltip.y = event.global.y + 10;
+                tooltipDimension.text = item.dimension
+                tooltipMeasure.text = item.measure
+                tooltipRate.text = `(${(item.data.getNumber(props.data.rate) * 100).toFixed(2)}%)`
 
-            annulus(data).map(item=>{
-                const angle = (item.endAngle+item.beginAngle)/2
-                const g = new Graphics();
-                g.eventMode = "dynamic"
-                g.beginFill(config.colors[item.dimension])
-                g.arc(100,100,40,item.beginAngle,item.endAngle,false)
-                g.arc(100,100,15,item.endAngle,item.beginAngle,true)
-                g.closePath()
-                if(item.endAngle-item.beginAngle>0.3){
-                    const label = new Text(item.dimension)
-                    label.anchor.set(0.5,0.5)
-                    label.x = 100+27*Math.cos(angle)
-                        label.y = 100+27*Math.sin(angle)
-                    label.style.fontSize = 10
-                    g.addChild(label)
-                }
-                g.onmouseover = (event) => {
-                    tooltip.visible = true
-                    tooltip.x = event.global.x+10;
-                    tooltip.y = event.global.y+10;
-                    tooltipDimension.text = item.dimension
-                    tooltipMeasure.text = item.measure
-                    tooltipRate.text = `(${(item.data.getNumber(data.rate)*100).toFixed(2)}%)`
+            }
+            g.onmousemove = (event) => {
+                tooltip.visible = true
+                tooltip.x = event.global.x + 10;
+                tooltip.y = event.global.y + 10;
+            }
+            g.onmouseout = () => {
+                tooltip.visible = false
+            }
+            area.addChild(g);
+            attach.moveTo(circle()[0] + circle()[2] * Math.cos(angle), circle()[1] + circle()[2] * Math.sin(angle))
+            attach.lineStyle({width: 1, color: props.config.colors[item.dimension]})
+            attach.lineTo(circle()[0] + circle()[2]*1.1 * Math.cos(angle), circle()[1] + circle()[2]*1.1 * Math.sin(angle))
+            const mark = new Text(item.measure)
+            mark.anchor.set(Math.cos(angle) > 0 ? 0 : Math.cos(angle) < 0 ? 1 : 0.5, 0.5)
+            mark.style.fontSize = 10
+            mark.x = circle()[0] + circle()[2]*1.1 * Math.cos(angle)
+            mark.y = circle()[1] + circle()[2]*1.1 * Math.sin(angle)
+            if (Math.abs(Math.cos(angle)) < 0.9) {
+                attach.lineTo(circle()[0] + circle()[2]*1.2 * Math.cos(angle), circle()[1] + circle()[2]*1.1 * Math.sin(angle))
+                mark.x = circle()[0] + circle()[2]*1.2 * Math.cos(angle)
+                mark.y = circle()[1] + circle()[2]*1.1 * Math.sin(angle)
+            }
+            attach.addChild(mark)
+        })
 
-                }
-                g.onmousemove = (event) => {
-                    tooltip.visible = true
-                    tooltip.x = event.global.x+10;
-                    tooltip.y = event.global.y+10;
-                }
-                g.onmouseout = () => {
-                    tooltip.visible = false
-                }
-                area.addChild(g);
-                attach.moveTo(100+40*Math.cos(angle),100+40*Math.sin(angle))
-                attach.lineStyle({width:1,color:config.colors[item.dimension]})
-                attach.lineTo(100+50*Math.cos(angle),100+50*Math.sin(angle))
-                const mark = new Text(item.measure)
-                mark.anchor.set(Math.cos(angle)>0?0:Math.cos(angle)<0?1:0.5,0.5)
-                mark.style.fontSize = 10
-                mark.x = 100+50*Math.cos(angle)
-                mark.y = 100+50*Math.sin(angle)
-                if(Math.abs(Math.cos(angle))<0.9){
-                    attach.lineTo(100+70*Math.cos(angle),100+50*Math.sin(angle))
-                    mark.x =100+70*Math.cos(angle)
-                        mark.y = 100+50*Math.sin(angle)
-                }
-                attach.addChild(mark)
-            })
+        const legendLayout = discrete(dimensionList, [bound()[3], bound()[1]])
 
-            dimensionList.forEach(item=>{
-                attach.beginFill(config.colors[item])
-                attach.drawRoundedRect(legendLayout(item)[0],10,20,15,3)
-                attach.endFill()
-                const t = new Text(item)
-                t.x = legendLayout(item)[0]+25;
-                t.y = 10
-                t.style.fontSize = 12
-                t.style.lineHeight = 15
-                attach.addChild(t)
-            })
-
-            application.stage.addChild(area);
-            application.stage.addChild(attach);
-            application.stage.addChild(tooltip);
-            container.append(application.view as HTMLCanvasElement);
+        dimensionList.forEach(item => {
+            attach.beginFill(props.config.colors[item])
+            attach.drawRoundedRect((legendLayout(item)[0]+legendLayout(item)[1])/2-25, 10, 20, 15, 3)
+            attach.endFill()
+            const t = new Text(item)
+            t.x = (legendLayout(item)[0]+legendLayout(item)[1])/2 ;
+            t.y = 10
+            t.style.fontSize = 12
+            t.style.lineHeight = 15
+            attach.addChild(t)
+        })
+        if(circle()[2] >100){
+            const totalLabel = new Text('总计')
+            totalLabel.style.fontSize = 12
+            totalLabel.anchor.set(0.5, 0.5)
+            totalLabel.x = circle()[0];
+            totalLabel.y = circle()[1]-40;
+            const totalValue = new Text(props.data.dimension)
+            totalValue.style.fontSize = 16
+            totalValue.anchor.set(0.5, 0.5)
+            totalValue.x = circle()[0];
+            totalValue.y = circle()[1]-20;
+            attach.addChild(totalLabel)
+            attach.addChild(totalValue)
+            const rateLabel = new Text('通过率')
+            rateLabel.style.fontSize = 12
+            rateLabel.anchor.set(0.5, 0.5)
+            rateLabel.x = circle()[0];
+            rateLabel.y = circle()[1]+20;
+            const rateValue = new Text(props.data.rate)
+            rateValue.style.fontSize = 16
+            rateValue.anchor.set(0.5, 0.5)
+            rateValue.x = circle()[0];
+            rateValue.y = circle()[1]+40;
+            attach.addChild(rateLabel)
+            attach.addChild(rateValue)
         }
-    );
-    return <div ref={container} />;
+
+        application.stage.addChild(area);
+        application.stage.addChild(attach);
+        application.stage.addChild(tooltip);
+        container.append(application.view as HTMLCanvasElement);
+    });
+
+
+    const resizeAnnulus = () => {
+        if(!container) return
+        const [width,height]=[container.clientWidth,container.clientHeight]
+        // application.sc
+    }
+
+    createEffect(()=>{
+        window.addEventListener("resize", resizeAnnulus)
+        return ()=>window.removeEventListener("resize", resizeAnnulus)
+    })
+    return <div ref={container}/>;
 };

@@ -46,28 +46,19 @@ export class PlotData {
 export class PlotConfig {
     width: number;
     height: number;
-    top: number;
-    right: number;
-    bottom: number;
-    left: number;
+    margin: [number,number,number,number];
     colors: { [key: string]: string };
 
 
     constructor (props?: {
         width?: number,
         height?: number,
-        top?: number,
-        right?: number,
-        bottom?: number,
-        left?: number,
+        margin?:  [number,number,number,number],
         colors?: { [key: string]: string }
     }) {
         this.width = props?.width || 0;
         this.height = props?.height || 0;
-        this.top = props?.top || 0;
-        this.right = props?.right || 0;
-        this.bottom = props?.bottom || 0;
-        this.left = props?.left || 0;
+        this.margin = props?.margin || [0,0,0,0];
         this.colors = props?.colors || {};
     }
 }
