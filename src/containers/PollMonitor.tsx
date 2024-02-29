@@ -1,7 +1,7 @@
 import {AnnulusPlot} from "../components/AnnulusPlot.tsx";
 import {PlotConfig, PlotData, PlotItem} from "../models/plot.ts";
 import {CompositePlot} from "../components/CompositePlot.tsx";
-import {createEffect, createSignal, onCleanup, onMount} from "solid-js";
+import {createEffect, createSignal } from "solid-js";
 
 export const PollMonitor = () => {
     let container: HTMLDivElement | undefined = undefined;
@@ -49,47 +49,54 @@ export const PollMonitor = () => {
             label1: "#ae2400", label2: "#5fd", label3: "#c36"
         }
     }))
-
-    createEffect(() => setAnnulusConfig(prevState => {
-        if (container) {
-            return new PlotConfig({
-                ...prevState,
-                width: container.clientWidth, height: container.clientHeight * 0.5
-            })
-        } else {
-            return prevState
+    const [compositeData] = createSignal(new PlotData({
+        items: compositeItems,
+        dimension: "time",
+        group: "label",
+        measure: "value",
+        rate: "rate",
+        sort: ["label3", "label2", "label1"]
+    }))
+    const [compositeConfig,setCompositeConfig] = createSignal(new PlotConfig({
+        width: 300, height: 200, margin: [30,  20,  0,  20], colors: {
+            label1: "#ae2400", label2: "#5fd", label3: "#c36"
         }
     }))
+
+    createEffect(() => resizePlot())
 
     const resizeAnnulus = () => setAnnulusConfig(prevState => {
         if (container) {
             return new PlotConfig({
                 ...prevState,
-                width: container.clientWidth, height: container.clientHeight * 0.5
+                width: container.clientWidth, height: container.clientHeight * 0.4
             })
         } else {
             return prevState
         }
     })
+    const resizeComposite = () => setCompositeConfig(prevState => {
+        if (container) {
+            return new PlotConfig({
+                ...prevState,
+                width: container.clientWidth, height: container.clientHeight * 0.4
+            })
+        } else {
+            return prevState
+        }
+    })
+    const resizePlot = () => {
+        resizeAnnulus()
+        resizeComposite()
+    }
 
     createEffect(()=>{
-        window.addEventListener("resize", resizeAnnulus)
-        return ()=>window.removeEventListener("resize", resizeAnnulus)
+        window.addEventListener("resize", resizePlot)
+        return ()=>window.removeEventListener("resize", resizePlot)
     })
 
     return (<div ref={container} class='poll-monitor'>
             <AnnulusPlot data={annulusData()} config={annulusConfig()}/>
-            <CompositePlot data={new PlotData({
-                items: compositeItems,
-                dimension: "time",
-                group: "label",
-                measure: "value",
-                rate: "rate",
-                sort: ["label3", "label2", "label1"]
-            })} config={new PlotConfig({
-                width: 300, height: 200, margin: [30,  20,  0,  20], colors: {
-                    label1: "#ae2400", label2: "#5fd", label3: "#c36"
-                }
-            })}/>
+            <CompositePlot data={compositeData()} config={compositeConfig()}/>
         </div>);
 }

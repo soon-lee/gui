@@ -1,5 +1,5 @@
-import {PlotConfig, PlotProps} from "../models/plot.ts";
-import {Application, extensions, Graphics, ResizePlugin, Text} from "pixi.js";
+import { PlotProps} from "../models/plot.ts";
+import {Application, Graphics, Text} from "pixi.js";
 import {annulus, dimensions, discrete} from "../models/layout.ts";
 import {createEffect, createSignal} from "solid-js";
 
@@ -11,19 +11,21 @@ export const AnnulusPlot = (props: PlotProps) => {
     const [circle, setCircle] = createSignal([0, 0, 0])
     const [bound, setBound] = createSignal([0, 0, 0, 0])
     createEffect(() => {
-        application.renderer.clear()
+        area.clear()
+        area.removeChildren()
+        attach.removeChildren()
+        attach.clear()
         application.renderer.resize(props.config.width, props.config.height)
-        application.render()
         const [top, right, bottom, left] = [props.config.margin[0], props.config.width - props.config.margin[1], props.config.height - props.config.margin[2], props.config.margin[3]]
         const [width, height] = [right - left, bottom - top]
         setBound([top, right, bottom, left])
         setCircle([(left + right) / 2, (top + bottom) / 2, Math.min(width, height) / 2 - 10])
-        // const renderTexture = application.renderer.generateTexture(application.stage);
-        // application.stage.removeChildren();
-        // application.stage.addChild(renderTexture);
     })
 
     const area = new Graphics();
+
+    const attach = new Graphics()
+
     const tooltip = new Graphics();
     tooltip.visible = false;
     tooltip.beginFill('white')
@@ -50,14 +52,13 @@ export const AnnulusPlot = (props: PlotProps) => {
     tooltip.addChild(tooltipMeasure)
     tooltip.addChild(tooltipRate)
 
-    const attach = new Graphics()
-
     const dimensionList = dimensions(props.data);
 
 
     createEffect(() => {
 
         if (!container) return
+        application.stage.removeChildren()
 
         annulus(props.data).map(item => {
             const angle = (item.endAngle + item.beginAngle) / 2
@@ -67,7 +68,7 @@ export const AnnulusPlot = (props: PlotProps) => {
             g.arc(circle()[0], circle()[1], circle()[2], item.beginAngle, item.endAngle, false)
             g.arc(circle()[0], circle()[1], circle()[2] * 0.6, item.endAngle, item.beginAngle, true)
             g.closePath()
-            if (circle()[2] * 0.6*Math.sin(angle/2)*2 > 12) {
+            if (circle()[2] * 0.6*Math.sin(angle/2)*2 > 8) {
                 const label = new Text(item.dimension)
                 label.anchor.set(0.5, 0.5)
                 label.x = circle()[0] + circle()[2]*0.7 * Math.cos(angle)
@@ -155,16 +156,5 @@ export const AnnulusPlot = (props: PlotProps) => {
         container.append(application.view as HTMLCanvasElement);
     });
 
-
-    const resizeAnnulus = () => {
-        if(!container) return
-        const [width,height]=[container.clientWidth,container.clientHeight]
-        // application.sc
-    }
-
-    createEffect(()=>{
-        window.addEventListener("resize", resizeAnnulus)
-        return ()=>window.removeEventListener("resize", resizeAnnulus)
-    })
-    return <div ref={container}/>;
+    return (<div ref={container}/>);
 };
