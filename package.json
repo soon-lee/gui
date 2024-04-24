@@ -1,0 +1,18 @@
+{
+  "name": "web-component-ui",
+  "version": "1.0.0",
+  "description": "Web Component封装的UI组件库",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/soonlee/gui.git"
+  },
+  "keywords": [
+    "Web Component",
+    "UI"
+  ],
+  "author": "Soon Lee",
+  "license": "MIT"
+}

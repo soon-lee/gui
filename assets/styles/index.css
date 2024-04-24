@@ -1,0 +1,390 @@
+:root {
+    /* 主色浅色背景色 */
+    --color-primary-bg: #e6f4ff;
+    /* 主色浅色背景悬浮态 */
+    --color-primary-bg-hover: #bae0ff;
+    /* 主色描边色 */
+    --color-primary-border: #91caff;
+    /* 主色描边色悬浮态 */
+    --color-primary-border-hover: #69b1ff;
+    /* 主色悬浮态 */
+    --color-primary-hover: #4096ff;
+    /* 品牌主色 */
+    --color-primary: #1677ff;
+    /* 主色激活态 */
+    --color-primary-active: #0958d9;
+    /* 主色文本悬浮态 */
+    --color-primary-text-hover: #4096ff;
+    /* 主色文本 */
+    --color-primary-text: #1677ff;
+    /* 主色文本激活态 */
+    --color-primary-text-active: #0958d9;
+    /* 成功色的浅色背景颜色 */
+    --color-success-bg: #f6ffed;
+    /* 成功色的浅色背景色悬浮态 */
+    --color-success-bg-hover: #d9f7be;
+    /* 成功色的描边色 */
+    --color-success-border: #b7eb8f;
+    /* 成功色的描边色悬浮态 */
+    --color-success-border-hover: #95de64;
+    /* 成功色的深色悬浮态 */
+    --color-success-hover: #95de64;
+    /* 成功色 */
+    --color-success: #52c41a;
+    /* 成功色的深色激活态 */
+    --color-success-active: #389e0d;
+    /* 成功色的文本悬浮态 */
+    --color-success-text-hover: #73d13d;
+    /* 成功色的文本默认态 */
+    --color-success-text: #52c41a;
+    /* 成功色的文本激活态 */
+    --color-success-text-active: #389e0d;
+    /* 警戒色的浅色背景颜色 */
+    --color-warning-bg: #fffbe6;
+    /* 警戒色的浅色背景色悬浮态 */
+    --color-warning-bg-hover: #fff1b8;
+    /* 警戒色的描边色 */
+    --color-warning-border: #ffe58f;
+    /* 警戒色的描边色悬浮态 */
+    --color-warning-border-hover: #ffd666;
+    /* 警戒色的深色悬浮态 */
+    --color-warning-hover: #ffd666;
+    /* 警戒色 */
+    --color-warning: #faad14;
+    /* 警戒色的深色激活态 */
+    --color-warning-active: #d48806;
+    /* 警戒色的文本悬浮态 */
+    --color-warning-text-hover: #ffc53d;
+    /* 警戒色的文本默认态 */
+    --color-warning-text: #faad14;
+    /* 警戒色的文本激活态 */
+    --color-warning-text-active: #d48806;
+    /* 错误色的浅色背景颜色 */
+    --color-error-bg: #fff2f0;
+    /* 错误色的浅色背景色悬浮态 */
+    --color-error-bg-hover: #fff1f0;
+    /* 错误色的描边色 */
+    --color-error-border: #ffccc7;
+    /* 错误色的描边色悬浮态 */
+    --color-error-border-hover: #ffa39e;
+    /* 错误色的深色悬浮态 */
+    --color-error-hover: #ff7875;
+    /* 错误色 */
+    --color-error: #ff4d4f;
+    /* 错误色的深色激活态 */
+    --color-error-active: #d9363e;
+    /* 错误色的文本悬浮态 */
+    --color-error-text-hover: #ff7875;
+    /* 错误色的文本默认态 */
+    --color-error-text: #ff4d4f;
+    /* 错误色的文本激活态 */
+    --color-error-text-active: #d9363e;
+    /* 超链接悬浮颜色 */
+    --color-link-hover: #69b1ff;
+    /* 超链接激活颜色 */
+    --color-link-active: #0958d9;
+    /* 基础文本色 */
+    --color-text-base: #000000;
+    /* 基础背景色 */
+    --color-bg-base: #FFFFFF;
+    /* 一级文本色 */
+    --color-text: rgba(0, 0, 0, 0.88);
+    /* 二级文本色 */
+    --color-text-secondary: rgba(0, 0, 0, 0.65);
+    /* 三级文本色 */
+    --color-text-tertiary: rgba(0, 0, 0, 0.45);
+    /* 四级文本色 */
+    --color-text-quaternary: rgba(0, 0, 0, 0.25);
+    /* 一级边框色 */
+    --color-border: #d9d9d9;
+    /* 二级边框色 */
+    --color-border-secondary: #f0f0f0;
+    /* 一级填充色 */
+    --color-fill: rgba(0, 0, 0, 0.15);
+    /* 二级填充色 */
+    --color-fill-secondary: rgba(0, 0, 0, 0.06);
+    /* 三级填充色 */
+    --color-fill-tertiary: rgba(0, 0, 0, 0.04);
+    /* 四级填充色 */
+    --color-fill-quaternary: rgba(0, 0, 0, 0.02);
+    /* 组件容器背景色 */
+    --color-bg-container: #ffffff;
+    /* 浮层容器背景色 */
+    --color-bg-elevated: #ffffff;
+    /* 布局背景色 */
+    --color-bg-layout: #f5f5f5;
+    /* 引起注意的背景色 */
+    --color-bg-spotlight: rgba(0, 0, 0, 0.85);
+    /* 浮层的背景蒙层颜色 */
+    --color-bg-mask: rgba(0, 0, 0, 0.45);
+    /* 默认字号 */
+    --font-size: 14px;
+    --font-size-small: 12px;
+    --font-size-large: 16px;
+    --font-size-larger: 20px;
+    /* 一级标题字号 */
+    --font-size-heading1: 38px;
+    /* 二级标题字号 */
+    --font-size-heading2: 30px;
+    /* 三级标题字号 */
+    --font-size-heading3: 24px;
+    /* 四级标题字号 */
+    --font-size-heading4: 20px;
+    /* 五级标题字号 */
+    --font-size-heading5: 16;
+    /* 默认行高 */
+    --line-height: 1.5714285714285714;
+    /* 小行高 */
+    --line-height-small: 1.6666666666666667;
+    /* 大行高 */
+    --line-height-large: 1.5;
+    /* 一级标题行高 */
+    --line-height-heading1: 1.2105263157894737;
+    /* 二级标题行高 */
+    --line-height-heading2: 1.2666666666666666;
+    /* 三级标题行高 */
+    --line-height-heading3: 1.3333333333333333;
+    /* 四级标题行高 */
+    --line-height-heading4: 1.4;
+    /* 五级标题行高 */
+    --line-height-heading5: 1.5;
+    /* 外边距 XXS */
+    --margin-smallest: 4px;
+    /* 外边距 XS */
+    --margin-smaller: 8px;
+    /* 外边距 SM */
+    --margin-small: 12px;
+    /* 外边距 */
+    --margin: 16px;
+    /* 外边距 MD */
+    --margin-medium: 20px;
+    /* 外边距 LG */
+    --margin-large: 24px;
+    /* 外边距 XL */
+    --margin-larger: 32px;
+    /* 外边距 XXL */
+    --margin-xlarger: 48px;
+    /* 极小内间距 */
+    --padding-smallest: 4px;
+    /* 特小内间距 */
+    --padding-smaller: 8px;
+    /* 小内间距 */
+    --padding-small: 12px;
+    /* 内间距 */
+    --padding: 16px;
+    /* 中等内间距 */
+    --padding-medium: 20px;
+    /* 大内间距 */
+    --padding-large: 24px;
+    /* 特大内间距 */
+    --padding-larger: 32px;
+    /* XS号圆角 */
+    --border-radius-smaller: 2px;
+    /* SM号圆角 */
+    --border-radius-small: 4px;
+    /* 基础圆角 */
+    --border-radius: 6px;
+    /* LG号圆角 */
+    --border-radius-large: 8px;
+    /* 一级阴影 */
+    --box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    /* 二级阴影 */
+    --box-shadow-secondary: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme="dark"] {
+    /* 主色浅色背景色 */
+    --color-primary-bg: #111a2c;
+    /* 主色浅色背景悬浮态 */
+    --color-primary-bg-hover: #112545;
+    /* 主色描边色 */
+    --color-primary-border: #15325b;
+    /* 主色描边色悬浮态 */
+    --color-primary-border-hover: #15417e;
+    /* 主色悬浮态 */
+    --color-primary-hover: #3c89e8;
+    /* 品牌主色 */
+    --color-primary: #1668dc;
+    /* 主色激活态 */
+    --color-primary-active: #1554ad;
+    /* 主色文本悬浮态 */
+    --color-primary-text-hover: #3c89e8;
+    /* 主色文本 */
+    --color-primary-text: #1668dc;
+    /* 主色文本激活态 */
+    --color-primary-text-active: #1554ad;
+    /* 成功色的浅色背景颜色 */
+    --color-success-bg: #162312;
+    /* 成功色的浅色背景色悬浮态 */
+    --color-success-bg-hover: #1d3712;
+    /* 成功色的描边色 */
+    --color-success-border: #274916;
+    /* 成功色的描边色悬浮态 */
+    --color-success-border-hover: #306317;
+    /* 成功色的深色悬浮态 */
+    --color-success-hover: #306317;
+    /* 成功色 */
+    --color-success: #49aa19;
+    /* 成功色的深色激活态 */
+    --color-success-active: #3c8618;
+    /* 成功色的文本悬浮态 */
+    --color-success-text-hover: #6abe39;
+    /* 成功色的文本默认态 */
+    --color-success-text: #49aa19;
+    /* 成功色的文本激活态 */
+    --color-success-text-active: #3c8618;
+    /* 警戒色的浅色背景颜色 */
+    --color-warning-bg: #2b2111;
+    /* 警戒色的浅色背景色悬浮态 */
+    --color-warning-bg-hover: #443111;
+    /* 警戒色的描边色 */
+    --color-warning-border: #594214;
+    /* 警戒色的描边色悬浮态 */
+    --color-warning-border-hover: #7c5914;
+    /* 警戒色的深色悬浮态 */
+    --color-warning-hover: #7c5914;
+    /* 警戒色 */
+    --color-warning: #d89614;
+    /* 警戒色的深色激活态 */
+    --color-warning-active: #aa7714;
+    /* 警戒色的文本悬浮态 */
+    --color-warning-text-hover: #e8b339;
+    /* 警戒色的文本默认态 */
+    --color-warning-text: #d89614;
+    /* 警戒色的文本激活态 */
+    --color-warning-text-active: #aa7714;
+    /* 错误色的浅色背景颜色 */
+    --color-error-bg: #2c1618;
+    /* 错误色的浅色背景色悬浮态 */
+    --color-error-bg-hover: #451d1f;
+    /* 错误色的描边色 */
+    --color-error-border: #5b2526;
+    /* 错误色的描边色悬浮态 */
+    --color-error-border-hover: #7e2e2f;
+    /* 错误色的深色悬浮态 */
+    --color-error-hover: #e86e6b;
+    /* 错误色 */
+    --color-error: #dc4446;
+    /* 错误色的深色激活态 */
+    --color-error-active: #ad393a;
+    /* 错误色的文本悬浮态 */
+    --color-error-text-hover: #e86e6b;
+    /* 错误色的文本默认态 */
+    --color-error-text: #dc4446;
+    /* 错误色的文本激活态 */
+    --color-error-text-active: #ad393a;
+    /* 超链接悬浮颜色 */
+    --color-link-hover: #15417e;
+    /* 超链接激活颜色 */
+    --color-link-active: #1554ad;
+    /* 基础文本色 */
+    --color-text-base: #ffffff;
+    /* 基础背景色 */
+    --color-bg-base: #000000;
+    /* 一级文本色 */
+    --color-text: rgba(255, 255, 255, 0.85);
+    /* 二级文本色 */
+    --color-text-secondary: rgba(255, 255, 255, 0.65);
+    /* 三级文本色 */
+    --color-text-tertiary: rgba(255, 255, 255, 0.45);
+    /* 四级文本色 */
+    --color-text-quaternary: rgba(255, 255, 255, 0.25);
+    /* 一级边框色 */
+    --color-border: #424242;
+    /* 二级边框色 */
+    --color-border-secondary: #303030;
+    /* 一级填充色 */
+    --color-fill: rgba(255, 255, 255, 0.18);
+    /* 二级填充色 */
+    --color-fill-secondary: rgba(255, 255, 255, 0.12);
+    /* 三级填充色 */
+    --color-fill-tertiary: rgba(255, 255, 255, 0.08);
+    /* 四级填充色 */
+    --color-fill-quaternary: rgba(255, 255, 255, 0.04);
+    /* 组件容器背景色 */
+    --color-bg-container: #141414;
+    /* 浮层容器背景色 */
+    --color-bg-elevated: #1f1f1f;
+    /* 布局背景色 */
+    --color-bg-layout: #000000;
+    /* 引起注意的背景色 */
+    --color-bg-spotlight: #424242;
+    /* 浮层的背景蒙层颜色 */
+    --color-bg-mask: rgba(0, 0, 0, 0.45);
+    /* 默认字号 */
+    --font-size: 14px;
+    --font-size-small: 12px;
+    --font-size-large: 16px;
+    --font-size-larger: 20px;
+    /* 一级标题字号 */
+    --font-size-heading1: 38px;
+    /* 二级标题字号 */
+    --font-size-heading2: 30px;
+    /* 三级标题字号 */
+    --font-size-heading3: 24px;
+    /* 四级标题字号 */
+    --font-size-heading4: 20px;
+    /* 五级标题字号 */
+    --font-size-heading5: 16px;
+    /* 默认行高 */
+    --line-height: 1.5714285714285714;
+    /* 小行高 */
+    --line-height-small: 1.6666666666666667;
+    /* 大行高 */
+    --line-height-large: 1.5;
+    /* 一级标题行高 */
+    --line-height-heading1: 1.2105263157894737;
+    /* 二级标题行高 */
+    --line-height-heading2: 1.2666666666666666;
+    /* 三级标题行高 */
+    --line-height-heading3: 1.3333333333333333;
+    /* 四级标题行高 */
+    --line-height-heading4: 1.4;
+    /* 五级标题行高 */
+    --line-height-heading5: 1.5;
+    /* 外边距 XXS */
+    --margin-smallest: 4px;
+    /* 外边距 XS */
+    --margin-smaller: 8px;
+    /* 外边距 SM */
+    --margin-small: 12px;
+    /* 外边距 */
+    --margin: 16px;
+    /* 外边距 MD */
+    --margin-medium: 20px;
+    /* 外边距 LG */
+    --margin-large: 24px;
+    /* 外边距 XL */
+    --margin-larger: 32px;
+    /* 外边距 XXL */
+    --margin-xlarger: 48px;
+    /* 极小内间距 */
+    --padding-smallest: 4px;
+    /* 特小内间距 */
+    --padding-smaller: 8px;
+    /* 小内间距 */
+    --padding-small: 12px;
+    /* 内间距 */
+    --padding: 16px;
+    /* 中等内间距 */
+    --padding-medium: 20px;
+    /* 大内间距 */
+    --padding-large: 24px;
+    /* 特大内间距 */
+    --padding-larger: 32px;
+    /* XS号圆角 */
+    --border-radius-smaller: 2px;
+    /* SM号圆角 */
+    --border-radius-small: 4px;
+    /* 基础圆角 */
+    --border-radius: 6px;
+    /* LG号圆角 */
+    --border-radius-large: 8px;
+    /* 一级阴影 */
+    --box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    /* 二级阴影 */
+    --box-shadow-secondary: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+html{
+    background-color: var(--color-bg-container);
+}
