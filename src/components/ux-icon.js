@@ -1,5 +1,5 @@
 import {createFragment, createStyle} from "../utils/dom.js";
-import {loadSvg} from "../utils/file.js";
+import {loadSvgFromFile} from "../utils/inout.js";
 
 export class UxIcon extends HTMLElement {
     static cacheIcon = {};
@@ -7,12 +7,7 @@ export class UxIcon extends HTMLElement {
     constructor(props) {
         super();
         this.attachShadow({mode: "open"});
-        this.addEventListener("newUxIcon", event => {
-            !this.dataset["icon"] && (this.dataset["icon"] = event["detail"] && event["detail"]["icon"] || "");
-        });
-        this.dispatchEvent(new CustomEvent("newUxIcon", {
-            detail: {icon: props && props["icon"]}
-        }));
+        this.dataset["icon"] = props && props["icon"] || "";
     }
 
     connectedCallback() {
@@ -30,7 +25,7 @@ export class UxIcon extends HTMLElement {
             }
         }
         if (!exists) {
-            UxIcon.cacheIcon[icon] = await loadSvg(`/assets/images/icons/${icon}.svg`);
+            UxIcon.cacheIcon[icon] = await loadSvgFromFile(`/assets/images/icons/${icon}.svg`);
         }
         return UxIcon.cacheIcon[icon];
     }
@@ -44,20 +39,27 @@ export class UxIcon extends HTMLElement {
     async places() {
         const style = `
         :host{
-            padding: 5px;
-            border: 1px solid var(--color-text-base);
+            border: 1px solid var(--color-text-secondary);
             border-radius: var(--border-radius);
             background-color: var(--color-bg-container);
             display: block;
-            box-sizing: border-box;
-            width: 30px;
-            height: 30px;
+            width: calc(100% - 2px);
+            height: calc(100% - 2px);
+        }
+        :host(:hover){
+            border-color: var(--color-text);
         }
         svg{
-            width: 100%;
-            height: 100%;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            padding: 5px;
             path{
-                fill: var(--color-text-base);
+                fill: var(--color-text-secondary);
+            }
+        }
+        svg:hover{
+            path{
+                fill: var(--color-text);
             }
         }
         `;

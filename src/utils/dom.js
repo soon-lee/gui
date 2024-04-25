@@ -34,6 +34,19 @@ export const createStyle = (text) => {
     style.textContent = text;
     return style;
 };
-export const changeTheme = theme=>{
-    document.documentElement.setAttribute("data-theme",theme);
+export const createSpan = text =>{
+    const span = document.createElement("span");
+    span.textContent = text;
+    return span;
+}
+
+export const createALink = (href,text,children)=>{
+    const a = document.createElement("a");
+    a.href = href;
+    if(children){
+        children.forEach(child=>{
+            a.append(child)
+        });
+    }
+    return a;
 }
