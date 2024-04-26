@@ -1,68 +1,437 @@
-/*:root {*/
-/*  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
-/*  line-height: 1.5;*/
-/*  font-weight: 400;*/
+:root[data-theme="light"] {
+    --language-text-align: left;
+    --language-white-space: pre;
+    --language-word-spacing: normal;
+    --language-word-break: normal;
+    --language-word-wrap: normal;
+    --language-color: #90a4ae;
+    --language-background: #fafafa;
+    --language-font-family: Roboto Mono, monospace;
+    --language-font-size: 1em;
+    --language-line-height: 1.5em;
 
-/*  color-scheme: light dark;*/
-/*  color: rgba(255, 255, 255, 0.87);*/
-/*  background-color: #242424;*/
+    --language-moz-tab-size: 4;
+    --language-o-tab-size: 4;
+    --language-tab-size: 4;
 
-/*  font-synthesis: none;*/
-/*  text-rendering: optimizeLegibility;*/
-/*  -webkit-font-smoothing: antialiased;*/
-/*  -moz-osx-font-smoothing: grayscale;*/
-/*}*/
+    --language-webkit-hyphens: none;
+    --language-moz-hyphens: none;
+    --language-ms-hyphens: none;
+    --language-hyphens: none;
 
-/*a {*/
-/*  font-weight: 500;*/
-/*  color: #646cff;*/
-/*  text-decoration: inherit;*/
-/*}*/
-/*a:hover {*/
-/*  color: #535bf2;*/
-/*}*/
+    --language-moz-selection-background: #cceae7;
+    --language-moz-selection-color: #263238;
 
-/*body {*/
-/*  margin: 0;*/
-/*  display: flex;*/
-/*  place-items: center;*/
-/*  min-width: 320px;*/
-/*  min-height: 100vh;*/
-/*}*/
+    --language-selection-background: #cceae7;
+    --language-selection-color: #263238;
 
-/*h1 {*/
-/*  font-size: 3.2em;*/
-/*  line-height: 1.1;*/
-/*}*/
+    --language-not-pre-code-white-space: normal;
+    --language-not-pre-code-border-radius: 0.2em;
+    --language-not-pre-code-padding: 0.1em;
 
-/*button {*/
-/*  border-radius: 8px;*/
-/*  border: 1px solid transparent;*/
-/*  padding: 0.6em 1.2em;*/
-/*  font-size: 1em;*/
-/*  font-weight: 500;*/
-/*  font-family: inherit;*/
-/*  background-color: #1a1a1a;*/
-/*  cursor: pointer;*/
-/*  transition: border-color 0.25s;*/
-/*}*/
-/*button:hover {*/
-/*  border-color: #646cff;*/
-/*}*/
-/*button:focus,*/
-/*button:focus-visible {*/
-/*  outline: 4px auto -webkit-focus-ring-color;*/
-/*}*/
+    --language-pre-overflow: auto;
+    --language-pre-position: relative;
+    --language-pre-margin: 0.5em 0;
+    --language-pre-padding: 1.25em 1em;
 
-/*@media (prefers-color-scheme: light) {*/
-/*  :root {*/
-/*    color: #213547;*/
-/*    background-color: #ffffff;*/
-/*  }*/
-/*  a:hover {*/
-/*    color: #747bff;*/
-/*  }*/
-/*  button {*/
-/*    background-color: #f9f9f9;*/
-/*  }*/
-/*}*/
+    --language-css-code-color: #f76d47;
+
+    --language-namespace-opacity: 0.7;
+
+    --token-atrule-color: #7c4dff;
+
+    --token-attr-name-color: #39adb5;
+
+    --token-attr-value-color: #f6a434;
+
+    --token-attribute-color: #f6a434;
+
+    --token-boolean-color: #7c4dff;
+
+    --token-builtin-color: #39adb5;
+
+    --token-cdata-color: #39adb5;
+
+    --token-char-color: #39adb5;
+
+    --token-class-color: #39adb5;
+
+    --token-class-name-color: #6182b8;
+
+    --token-comment-color: #aabfc9;
+
+    --token-constant-color: #7c4dff;
+
+    --token-deleted-color: #e53935;
+
+    --token-doctype-color: #aabfc9;
+
+    --token-entity-color: #e53935;
+
+    --token-function-color: #7c4dff;
+
+    --token-hexcode-color: #f76d47;
+
+    --token-id-color: #7c4dff;
+    --token-id-font-weight: bold;
+
+    --token-important-color: #7c4dff;
+    --token-important-font-weight: bold;
+
+    --token-inserted-color: #39adb5;
+
+    --token-keyword-color: #7c4dff;
+
+    --token-number-color: #f76d47;
+
+    --token-operator-color: #39adb5;
+
+    --token-prolog-color: #aabfc9;
+
+    --token-property-color: #39adb5;
+
+    --token-pseudo-class-color: #f6a434;
+
+    --token-pseudo-element-color: #f6a434;
+
+    --token-punctuation-color: #39adb5;
+
+    --token-regex-color: #6182b8;
+
+    --token-selector-color: #e53935;
+
+    --token-string-color: #f6a434;
+
+    --token-symbol-color: #7c4dff;
+
+    --token-tag-color: #e53935;
+
+    --token-unit-color: #f76d47;
+
+    --token-url-color: #e53935;
+
+    --token-variable-color: #e53935;
+}
+
+:root[data-theme="dark"] {
+    --language-text-align: left;
+    --language-white-space: pre;
+    --language-word-spacing: normal;
+    --language-word-break: normal;
+    --language-word-wrap: normal;
+    --language-color: #eee;
+    --language-background: #2f2f2f;
+    --language-font-family: Roboto Mono, monospace;
+    --language-font-size: 1em;
+    --language-line-height: 1.5em;
+
+    --language-moz-tab-size: 4;
+    --language-o-tab-size: 4;
+    --language-tab-size: 4;
+
+    --language-webkit-hyphens: none;
+    --language-moz-hyphens: none;
+    --language-ms-hyphens: none;
+    --language-hyphens: none;
+
+    --language-moz-selection-background: #363636;
+
+    --language-selection-background: #363636;
+
+    --language-not-pre-code-white-space: normal;
+    --language-not-pre-code-border-radius: 0.2em;
+    --language-not-pre-code-padding: 0.1em;
+
+    --language-pre-overflow: auto;
+    --language-pre-position: relative;
+    --language-pre-margin: 0.5em 0;
+    --language-pre-padding: 1.25em 1em;
+
+
+    --language-css-code-color: #fd9170;
+
+    --language-namespace-opacity: 0.7;
+
+    --token-atrule-color: #c792ea;
+
+    --token-attr-name-color: #ffcb6b;
+
+    --token-attr-value-color: #a5e844;
+
+    --token-attribute-color: #a5e844;
+
+    --token-boolean-color: #c792ea;
+
+    --token-builtin-color: #ffcb6b;
+
+    --token-cdata-color: #80cbc4;
+
+    --token-char-color: #80cbc4;
+
+    --token-class-color: #ffcb6b;
+
+    --token-class-name-color: #f2ff00;
+
+    --token-comment-color: #616161;
+
+    --token-constant-color: #c792ea;
+
+    --token-deleted-color: #ff6666;
+
+    --token-doctype-color: #616161;
+
+    --token-entity-color: #ff6666;
+
+    --token-function-color: #c792ea;
+
+    --token-hexcode-color: #f2ff00;
+
+    --token-id-color: #c792ea;
+    --token-id-font-weight: bold;
+
+    --token-important-color: #c792ea;
+    --token-important-font-weight: bold;
+
+    --token-inserted-color: #80cbc4;
+
+    --token-keyword-color: #c792ea;
+
+    --token-number-color: #fd9170;
+
+    --token-operator-color: #89ddff;
+
+    --token-prolog-color: #616161;
+
+    --token-property-color: #80cbc4;
+
+    --token-pseudo-class-color: #a5e844;
+
+    --token-pseudo-element-color: #a5e844;
+
+    --token-punctuation-color: #89ddff;
+
+    --token-regex-color: #f2ff00;
+
+    --token-selector-color: #ff6666;
+
+    --token-string-color: #a5e844;
+
+    --token-symbol-color: #c792ea;
+
+    --token-tag-color: #ff6666;
+
+    --token-unit-color: #fd9170;
+
+    --token-url-color: #ff6666;
+
+    --token-variable-color: #ff6666;
+
+}
+
+code[class*="language-"],
+pre[class*="language-"] {
+    text-align: var(--language-text-align);
+    white-space: var(--language-white-space);
+    word-spacing: var(--language-word-spacing);
+    word-break: var(--language-word-break);
+    word-wrap: var(--language-word-wrap);
+    color: var(--language-color);
+    background: var(--language-background);
+    font-family: var(--language-font-family);
+    font-size: var(--language-font-size);
+    line-height: var(--language-line-height);
+
+    -moz-tab-size: var(--language-moz-tab-size);
+    -o-tab-size: var(--language-o-tab-size);
+    tab-size: var(--language-tab-size);
+
+    -webkit-hyphens: var(--language-webkit-hyphens);
+    -moz-hyphens: var(--language-moz-hyphens);
+    -ms-hyphens: var(--language-ms-hyphens);
+    hyphens: var(--language-hyphens);
+}
+
+code[class*="language-"]::-moz-selection,
+pre[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"] ::-moz-selection {
+    background: var(--language-moz-selection-background);
+    color: var(--language-moz-selection-color);
+}
+
+code[class*="language-"]::selection,
+pre[class*="language-"]::selection,
+code[class*="language-"] ::selection,
+pre[class*="language-"] ::selection {
+    background: var(--language-selection-background);
+    color: var(--language-selection-color);
+}
+
+:not(pre) > code[class*="language-"] {
+    white-space: var(--language-not-pre-code-white-space);
+    border-radius: var(--language-not-pre-code-border-radius);
+    padding: var(--language-not-pre-code-padding);
+}
+
+pre[class*="language-"] {
+    overflow: var(--language-pre-overflow);
+    position: var(--language-pre-position);
+    margin: var(--language-pre-margin);
+    padding: var(--language-pre-padding);
+}
+
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+    color: var(--language-css-code-color);
+}
+
+[class*="language-"] .namespace {
+    opacity: var(--language-namespace-opacity);
+}
+
+.token.atrule {
+    color: var(--token-atrule-color);
+}
+
+.token.attr-name {
+    color: var(--token-attr-name-color);
+}
+
+.token.attr-value {
+    color: var(--token-attr-value-color);
+}
+
+.token.attribute {
+    color: var(--token-attribute-color);
+}
+
+.token.boolean {
+    color: var(--token-boolean-color);
+}
+
+.token.builtin {
+    color: var(--token-builtin-color);
+}
+
+.token.cdata {
+    color: var(--token-cdata-color);
+}
+
+.token.char {
+    color: var(--token-char-color);
+}
+
+.token.class {
+    color: var(--token-class-color);
+}
+
+.token.class-name {
+    color: var(--token-class-name-color);
+}
+
+.token.comment {
+    color: var(--token-comment-color);
+}
+
+.token.constant {
+    color: var(--token-constant-color);
+}
+
+.token.deleted {
+    color: var(--token-deleted-color);
+}
+
+.token.doctype {
+    color: var(--token-doctype-color);
+}
+
+.token.entity {
+    color: var(--token-entity-color);
+}
+
+.token.function {
+    color: var(--token-function-color);
+}
+
+.token.hexcode {
+    color: var(--token-hexcode-color);
+}
+
+.token.id {
+    color: var(--token-id-color);
+    font-weight: var(--token-id-font-weight);
+}
+
+.token.important {
+    color: var(--token-important-color);
+    font-weight: var(--token-important-font-weight);
+}
+
+.token.inserted {
+    color: var(--token-inserted-color);
+}
+
+.token.keyword {
+    color: var(--token-keyword-color);
+}
+
+.token.number {
+    color: var(--token-number-color);
+}
+
+.token.operator {
+    color: var(--token-operator-color);
+}
+
+.token.prolog {
+    color: var(--token-prolog-color);
+}
+
+.token.property {
+    color: var(--token-property-color);
+}
+
+.token.pseudo-class {
+    color: var(--token-pseudo-class-color);
+}
+
+.token.pseudo-element {
+    color: var(--token-pseudo-element-color);
+}
+
+.token.punctuation {
+    color: var(--token-punctuation-color);
+}
+
+.token.regex {
+    color: var(--token-regex-color);
+}
+
+.token.selector {
+    color: var(--token-selector-color);
+}
+
+.token.string {
+    color: var(--token-string-color);
+}
+
+.token.symbol {
+    color: var(--token-symbolf-color);
+}
+
+.token.tag {
+    color: var(--token-tag-color);
+}
+
+.token.unit {
+    color: var(--token-unit-color);
+}
+
+.token.url {
+    color: var(--token-url-color);
+}
+
+.token.variable {
+    color: var(--token-variable-color);
+}

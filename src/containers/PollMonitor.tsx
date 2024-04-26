@@ -1,6 +1,6 @@
-import {AnnulusPlot} from "../components/AnnulusPlot.tsx";
+import {AnnulusPlot} from "../charts/AnnulusPlot.tsx";
 import {PlotConfig, PlotData, PlotItem} from "../models/plot.ts";
-import {CompositePlot} from "../components/CompositePlot.tsx";
+import {CompositePlot} from "../charts/CompositePlot.tsx";
 import {createEffect, createSignal } from "solid-js";
 
 export const PollMonitor = () => {

@@ -1,3 +1,12 @@
+/**
+ * @class
+ * @property op { string }
+ */
+class Test {
+    constructor(props) {
+        this.op = props && props.op || "";
+    }
+}
 import solidLogo from './assets/solid.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
