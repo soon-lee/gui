@@ -2,6 +2,7 @@ import solidLogo from './assets/solid.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import {PollMonitor} from "./containers/PollMonitor.tsx";
+import ActionList from "./components/ActionList.tsx";
 
 function App () {
     return (
@@ -17,6 +18,7 @@ function App () {
             <h1>Vite + Solid</h1>
             <div class="card">
                 <PollMonitor />
+                <ActionList actionList={["A0", "A1", "A2", "A3"]} />
             </div>
         </>
     )

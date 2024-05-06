@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "pixi.js": "^7.4.0",
-    "solid-js": "^1.8.15"
+    "solid-js": "^1.8.15",
+    "solid-styled-components": "^0.28.5",
+    "styled-jsx": "^5.1.2"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
