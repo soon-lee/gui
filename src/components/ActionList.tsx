@@ -2,9 +2,9 @@ import {createSignal} from "solid-js";
 import {styled} from "solid-styled-components";
 import MenuCompactAction from "../icons/MenuCompactAction.tsx";
 
-const ActionItem = (props:{action: string, onAction: ()=>any}) => {
-    return <li onclick={props.onAction}>{props.action}</li>
-}
+// const ActionItem = (props:{action: string, onAction: ()=>any}) => {
+//     return <li onclick={props.onAction}>{props.action}</li>
+// }
 
 const ActionList = (props:{actionList?: string[]}) => {
     const [compact, setCompact] = createSignal<boolean>(false);

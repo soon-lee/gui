@@ -2,6 +2,7 @@ import solidLogo from './assets/solid.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import ActionList from "./components/ActionList.tsx";
+import Hover from "./components/Hover.tsx";
 
 function App () {
     return (
@@ -17,6 +18,7 @@ function App () {
             <h1>Vite + Solid</h1>
             <div class="card">
                 <ActionList actionList={["test1", "test2", "test3"]} />
+                <Hover />
             </div>
         </>
     )
