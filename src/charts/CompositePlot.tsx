@@ -87,6 +87,8 @@ export const CompositePlot = (props: PlotProps) => {
             areaLine.removeChildren()
             areaPoint.clear()
             areaPoint.removeChildren()
+            axes.clear()
+            axes.removeChildren()
 
 
             const stack = stackLayout(
