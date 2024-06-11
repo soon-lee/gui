@@ -1,23 +1,29 @@
-# gui
-可视化的Web和本地实现
+# Rsbuild Project
 
-### 分支说明
-使用分支实现功能
+## Setup
 
-#### main 分支
-组件或图表的设计
+Install the dependencies:
 
+```bash
+pnpm install
+```
 
-#### web 分支
+## Get Started
 
-1.  solid 分支 使用Solid.js框架
-2.  react 分支 使用React.js框架
-3.  vue3 分支 使用Vue3.js框架
-4.  vanilla 分支 使用原生
+Start the dev server:
 
-#### native 分支
+```bash
+pnpm dev
+```
 
-1.  c 分支 使用C语言，GUI选择GTK
-2.  rust 分支 使用Rust语言，GUI选择Tauri
-3.  go 分支 使用Go语言，GUI选择fyne
+Build the app for production:
 
+```bash
+pnpm build
+```
+
+Preview the production build locally:
+
+```bash
+pnpm preview
+```
