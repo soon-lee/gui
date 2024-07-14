@@ -1,0 +1,11 @@
+{
+  "greeting": "Hello, World!",
+  "greeting_name": "Hello, {name}!",
+  "welcome": "Welcome to Solid!",
+  "welcome_name": "Welcome to Solid, {name}!",
+  "goodbye": "Goodbye, World!",
+  "goodbye_name": "Goodbye, {name}!",
+  "title": "销量",
+  "locale.zh-Hans": "Chinese Simplified",
+  "locale.en-US": "English US"
+}

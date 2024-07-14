@@ -9,4 +9,14 @@ export default defineConfig({
     }),
     pluginSolid(),
   ],
+  source:{
+    alias: {
+      '@assets': './src/assets',
+      '@components': './src/components',
+      '@utils': './src/utils'
+    },
+  },
+  html: {
+    favicon: './src/assets/Diameter.svg',
+  }
 });

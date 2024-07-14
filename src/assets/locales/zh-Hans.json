@@ -1,0 +1,8 @@
+{
+  "greeting": "你好",
+  "greeting_name": "你好，{name}！",
+  "greeting_name_count": "你好，{name}，你一共有 {count} 个朋友！",
+  "title": "Sales",
+  "locale.zh-Hans": "中文简体",
+  "locale.en-US": "英语（美国）"
+}

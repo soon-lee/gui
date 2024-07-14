@@ -8,7 +8,10 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "solid-js": "^1.8.18"
+    "@types/echarts": "^4.9.22",
+    "echarts": "^5.5.1",
+    "solid-js": "^1.8.18",
+    "solid-styled-components": "^0.28.5"
   },
   "devDependencies": {
     "@rsbuild/core": "1.0.1-beta.0",
